@@ -17,11 +17,3 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Run tests
-          command: yarn test
-workflows:
-  version: 2
-  ultimate_pipeline:
-    jobs:
-      - test
