@@ -37,9 +37,9 @@ function asyncComponent({ prefix, loadManifest }) {
 }
 
 const Index = asyncComponent({
-  prefix: '/fragments/home',
+  prefix: '/fragments/node',
   loadManifest: () =>
-    fetch('/fragments/home/manifest.json').then(resp => resp.json())
+    fetch('/fragments/node/manifest.json').then(resp => resp.json())
 });
 
 const Routes = () => (
