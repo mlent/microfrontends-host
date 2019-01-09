@@ -33,8 +33,8 @@ jobs:
       - run:
           name: Install Helm
           command: |
-            RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-            RUN helm init -c
+            curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+            helm init -c
       - run:
           name: Setup Google Cloud SDK
           command: |
