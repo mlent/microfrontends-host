@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Run build
           command: yarn build
-  deploy:
+  deploy_k8s:
     docker:
       - image: google/cloud-sdk
     environment:
@@ -69,7 +69,7 @@ workflows:
   ultimate_pipeline:
     jobs:
       - build
-      - deploy:
+      - deploy_k8s:
           requires:
             - build
           filters:
