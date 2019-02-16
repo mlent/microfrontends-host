@@ -14,6 +14,7 @@ import Nav from './components/Nav';
 import Badge from './components/Badge';
 import Main from './components/Main';
 import Button from './components/Button';
+import Label from './components/Label';
 
 /*
  * Generate a component that will async fetch the module
@@ -34,6 +35,7 @@ const App = () => {
     <Router>
       <>
         <Container theme={theme}>
+          <Label theme={theme}>host-app</Label>
           <Nav theme={theme}>
             <h3>
               Menu <Badge theme={theme}>{counter}</Badge>

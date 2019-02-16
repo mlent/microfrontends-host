@@ -5,6 +5,7 @@ const Container = styled('div')`
   ${({ theme }) => css`
     width: 33%;
     display: flex;
+    position: relative;
     color: ${theme.colors.text};
     border: ${theme.border.width}px solid ${theme.colors.text};
     background-color: ${theme.colors.body};
