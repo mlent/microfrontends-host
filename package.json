@@ -22,9 +22,9 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.2.3",
     "babel-loader": "^8.0.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react-app": "^3.1.2",
@@ -35,6 +35,8 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.7",
+    "emotion-theming": "^10.0.7",
     "express": "^4.16.3",
     "morgan": "^1.9.1",
     "react": "^16.5.2",
