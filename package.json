@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "start:dev": "webpack --watch --config ./webpack.config.js --mode=development",
-    "build": "mkdir -p dist && cp src/manifest.json dist/manifest.json && cp src/index.html dist/index.html && yarn build:js",
+    "build": "mkdir -p dist && cp src/index.html dist/index.html && yarn build:js",
     "build:js": "webpack --mode=production",
     "dev:js": "webpack --mode=development"
   },
