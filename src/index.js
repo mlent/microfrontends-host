@@ -11,7 +11,14 @@ import asyncComponent from './asyncComponent';
 import ThemeSwitcher from './components/ThemeSwitcher';
 import Container from './components/Container';
 import Nav from './components/Nav';
+import Badge from './components/Badge';
+import Main from './components/Main';
+import Button from './components/Button';
 
+/*
+ * Generate a component that will async fetch the module
+ * when it gets rendered.
+ */
 const Index = asyncComponent({
   prefix: '/fragments/node',
   loadManifest: () =>
@@ -20,27 +27,46 @@ const Index = asyncComponent({
 
 const App = () => {
   const [theme, setTheme] = useState(light);
+  const [counter, setCounter] = useState(0);
+  const incrementCounter = () => setCounter(counter + 1);
 
   return (
     <Router>
       <>
-        <Global styles={globalStyles} />
         <Container theme={theme}>
           <Nav theme={theme}>
-            <h3>Menu</h3>
+            <h3>
+              Menu <Badge theme={theme}>{counter}</Badge>
+            </h3>
             <Link to="/">Index</Link>
+            <br />
+            <Button theme={theme} onClick={incrementCounter}>
+              Increment
+            </Button>
             <ThemeSwitcher
               theme={theme}
               onSetLightTheme={() => setTheme(light)}
               onSetDarkTheme={() => setTheme(dark)}
             />
           </Nav>
-          <section>
+          <Main>
             <Switch>
-              <Route exact path="/" component={Index} />
+              <Route
+                exact
+                path="/"
+                component={props => (
+                  <Index
+                    counter={counter}
+                    onIncrementCounter={incrementCounter}
+                    theme={theme}
+                    {...props}
+                  />
+                )}
+              />
             </Switch>
-          </section>
+          </Main>
         </Container>
+        <Global styles={globalStyles} />
       </>
     </Router>
   );

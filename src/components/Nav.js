@@ -7,6 +7,7 @@ const Nav = styled('nav')`
     border: ${theme.border.width}px dashed ${theme.colors.text};
     padding: ${theme.spacing.unit * 3}px;
     margin-right: ${theme.spacing.unit * 3}px;
+    width: 33%;
 
     a,
     a:hover,
