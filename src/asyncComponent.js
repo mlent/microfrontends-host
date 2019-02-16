@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 
-function asyncComponent({ prefix, loadManifest }) {
+export default function asyncComponent({ prefix, loadManifest }) {
   class AsyncComponent extends Component {
     static Component = null;
     state = { Component: AsyncComponent.Component };
@@ -27,25 +26,14 @@ function asyncComponent({ prefix, loadManifest }) {
     }
     render() {
       const { Component } = this.state;
+      console.log(this.props);
+
       if (Component) {
         return <Component {...this.props} />;
       }
+
       return null;
     }
   }
   return AsyncComponent;
 }
-
-const Index = asyncComponent({
-  prefix: '/fragments/node',
-  loadManifest: () =>
-    fetch('/fragments/node/manifest.json').then(resp => resp.json())
-});
-
-const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Index} />
-  </Switch>
-);
-
-export default Routes;

@@ -1,36 +1,47 @@
 import React, { useState, Component } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Global } from '@emotion/core';
 
 import { light, dark } from './themes';
 import globalStyles from './global';
-import Routes from './routes';
+import asyncComponent from './asyncComponent';
+
 import ThemeSwitcher from './components/ThemeSwitcher';
 import Container from './components/Container';
 import Nav from './components/Nav';
 
-const themes = { light, dark };
+const Index = asyncComponent({
+  prefix: '/fragments/node',
+  loadManifest: () =>
+    fetch('/fragments/node/manifest.json').then(resp => resp.json())
+});
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(light);
 
   return (
     <Router>
-      <ThemeProvider theme={themes[theme]}>
+      <>
         <Global styles={globalStyles} />
-        <Container>
-          <Nav>
+        <Container theme={theme}>
+          <Nav theme={theme}>
             <h3>Menu</h3>
             <Link to="/">Index</Link>
-            <ThemeSwitcher onSetTheme={setTheme} currentTheme={theme} />
+            <ThemeSwitcher
+              theme={theme}
+              onSetLightTheme={() => setTheme(light)}
+              onSetDarkTheme={() => setTheme(dark)}
+            />
           </Nav>
           <section>
-            <Routes />
+            <Switch>
+              <Route exact path="/" component={Index} />
+            </Switch>
           </section>
         </Container>
-      </ThemeProvider>
+      </>
     </Router>
   );
 };
