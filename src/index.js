@@ -20,7 +20,7 @@ import Label from './components/Label';
  * Generate a component that will async fetch the module
  * when it gets rendered.
  */
-const Index = asyncComponent({
+const MyFragment = asyncComponent({
   prefix: '/fragments/node',
   loadManifest: () =>
     fetch('/fragments/node/manifest.json').then(resp => resp.json())
@@ -35,12 +35,12 @@ const App = () => {
     <Router>
       <>
         <Container theme={theme}>
-          <Label theme={theme}>host-app</Label>
+          <Label theme={theme}>host</Label>
           <Nav theme={theme}>
             <h3>
               Menu <Badge theme={theme}>{counter}</Badge>
             </h3>
-            <Link to="/">Index</Link>
+            <Link to="/">Fragment</Link>
             <br />
             <Button theme={theme} onClick={incrementCounter}>
               Increment
@@ -57,7 +57,7 @@ const App = () => {
                 exact
                 path="/"
                 component={props => (
-                  <Index
+                  <MyFragment
                     counter={counter}
                     onIncrementCounter={incrementCounter}
                     theme={theme}
